@@ -2,7 +2,7 @@
   <div id="app">
     <div class ="container-fluid">
       <app-header></app-header>
-      <h4>Movie Review</h4>
+      <h4>Restaurant App</h4>
       <router-view></router-view>
     </div>
   </div>
@@ -19,12 +19,27 @@ export default {
   },
   components:{
     "app-header":Header
+  },
+  created(){
+    console.log("App created")
+    this.$store.dispatch("getMenu")
+    this.$store.dispatch("getOrders")
+    this.$store.dispatch("getOrdersSpec")
+    this.$store.dispatch("getOrdersUser")
   }
 }
 </script>
 
 <style>
-
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: goldenrod;
+  
+  background-color: lightgray;
+}
 /* 
 INITIAL STYLING
 #app {

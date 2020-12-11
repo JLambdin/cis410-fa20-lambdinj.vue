@@ -1,20 +1,14 @@
 <template>
     <div>
-        <h1>Sign Up</h1>
+        <h1>Sign Up A New admin</h1>
         <form @submit.prevent="onSubmit">
             <div class="form-group"><label for="fname-input">First name</label> <input type="text" id="fname-input" required="required" placeholder="First name" class="form-control" v-model="NameFirst"></div> 
             
             <div class="form-group"><label for="lname-input">Last name</label> <input type="text" id="lname-input" required="required" placeholder="Last name" class="form-control" v-model="NameLast"></div> 
-            
-            <div class="form-group"><label for="email-input">Email address</label> <input type="email" id="email-input" required="required" placeholder="Enter email" class="form-control" v-model="Email"> 
-            <small v-if="dupEmail" class="from-text text-danger">Please chose a different email.</small>
-            </div> 
        
-            <div class="form-group"><label for="phone-input">Phone PhoneNumber</label> <input type="text" id="phone-input" required="required" placeholder="Phone Number" class="form-control" v-model="PhoneNumber"></div>
+            <div class="form-group"><label for="password-input">EmployeePassword</label> <input type="text" id="password-input" required="required" placeholder="Employee Password" class="form-control" v-model="EmployeePassword"></div>
             
-            <div class="form-group"><label for="password-input">Password</label> <input type="password" id="password-input" placeholder="Password" required="required" value="asdfasdf" class="form-control" v-model="EmailPassword">
-            
-            </div> <button type="submit" class="btn btn-primary">Submit</button> <p id="error-signup" class="text-danger">{{errorMessage}}</p>
+             <button type="submit" class="btn btn-primary">Submit</button> <p id="error-signup" class="text-danger">{{errorMessage}}</p>
             
             </form>
     </div>
@@ -28,9 +22,7 @@ export default {
         return {
             NameFirst:'',
             NameLast: '',
-            Email:'',
-            PhoneNumber:'',
-            EmailPassword:'',
+            EmployeePassword:'',
             errorMessage:'',
             dupEmail: false
         }
@@ -40,12 +32,10 @@ export default {
             const myFormData = {
                 NameFirst: this.NameFirst,
                 NameLast: this.NameLast,
-                Email: this.Email,
-                PhoneNumber: this.PhoneNumber,
-                EmailPassword: this.EmailPassword
+                EmployeePassword: this.EmployeePassword
             }
              console.log(myFormData)
-            axios.post("/customers", myFormData)
+            axios.post("/admin/new", myFormData)
                 .then((myResponse)=>{
                     // console.log(myResponse)
                     this.$router.replace("/signin?signupsuccess=true")
