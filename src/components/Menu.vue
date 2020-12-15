@@ -26,10 +26,14 @@
                 </tr>
             </tbody>
         </table>
+        <router-link :to="`/menu/search`">
+                            <button type="button" class="btn btn-primary">Search for a menu item</button>
+                        </router-link>
         <div>
         <img src="src\assets\menu.jpg" alt="">
     </div>
     </div>
+    
 </template>
 
 

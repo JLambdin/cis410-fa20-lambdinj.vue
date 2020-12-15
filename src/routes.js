@@ -6,7 +6,7 @@ import Account from './components/Account.vue';
 import Login from './components/Login.vue';
 import ALogin from './components/ALogin.vue'
 import MovieDetail from './components/MovieDetail.vue';
-import Menu from './components/menu.vue';
+import Menu from './components/Menu.vue';
 import MenuAdd from './components/MenuAdd.vue';
 import MenuDelete from './components/MenuDelete.vue';
 import Orders from './components/Orders.vue';
@@ -18,6 +18,7 @@ import store from './store.js';
 import Director from './components/DirectorAc.vue';
 import CustomerUpdate from './components/CustomerUpdate.vue';
 import SuccessOrder from './components/SuccessOrder.vue';
+import MenuSearch from './components/MenuSearch.vue';
 
 
 
@@ -43,6 +44,7 @@ const routes = [
     {path: '/account/update', component: CustomerUpdate},
     {path: '/menu', component: Menu},
     {path: '/menu/add', component: MenuAdd},
+    {path: '/menu/search', component: MenuSearch},
     {path: '/menu/delete', component: MenuDelete},
     {path: '/orders', component: Orders},
     {path: '/orders/:pk', component: MovieDetail,

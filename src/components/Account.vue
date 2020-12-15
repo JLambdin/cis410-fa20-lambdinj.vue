@@ -2,24 +2,27 @@
     <div>
         <h1>Your Account Page!</h1>
         <hr/>
-        <h3> {{firstName}}'s Orders </h3>
+        <h3> {{firstName}}'s Details </h3>
         <router-link :to="`/neworder`">
                             <button type="button" class="btn btn-primary">Order Now!</button>
                         </router-link>
 
         <p v-if="accountError" class="form-text text-danger">Can not get your orders, please try again later</p>
         
-        <table v-if="reviewsByUser" class="table">
+        <table  class="table">
             <thead>
-                <th>Order ID</th>
-                <th>Order Line ID</th>
-                <th>Reward Points Awarded</th>
+                <th>Customer ID</th>
+                <th>Email</th>
+                <th>Name First</th>
+                <th>Name Last</th>
             </thead>
             <tbody>
-                <tr v-for="thisOrder in myOrders" :key="thisOrder.OrderID">
-                    <th>{{thisOrder.OrderID}}</th>
-                    <th>{{thisOrder.OrderLineIDFK}}</th>
-                    <th>{{thisOrder.RewardPointsAawarded}}</th>
+
+                <tr v-for="thisOrder in myDetails" :key="thisOrder.CustomerID">
+                    <th>{{myDetails.CustomerID}}</th>
+                    <th>{{myDetails.Email}}</th>
+                    <th>{{myDetails.NameLast}}</th>
+                    <th>{{myDetails.NameFirst}}</th>
                 </tr>
             </tbody>   
         </table>
@@ -46,21 +49,38 @@ export default {
         return this.$store.state.user.NameFirst}
     },
     created(){
-        axios.get(`/customers/${this.$store.state.user.CustomerID}/orders`, {
+        axios.get(`/customers/me`, {
             headers: {
                 Authorization: `Bearer ${this.$store.state.token}`
             }
         })
         .then((response)=>{ 
             console.log("here is the customers/orders response:", response)
-            this.myOrders = response.data})
+            this.myDetails = response.data})
+            
         .catch(()=>{
             this.accountError = true
         })
     },
-    orders(){return this.$store.state.myOrders}
+    //console.log("What");
+    user(){return this.$store.state.myDetails}
     
 }
+
+// axios.get(`/customers/${this.$store.state.user.CustomerID}/orders`, {
+//             headers: {
+//                 Authorization: `Bearer ${this.$store.state.token}`
+//             }
+//         })
+//         .then((response)=>{ 
+//             console.log("here is the customers/orders response:", response)
+//             this.myOrders = response.data})
+//         .catch(()=>{
+//             this.accountError = true
+//         })
+//     },
+//     orders(){return this.$store.state.myOrders}
+    
 </script>
 
 <style scoped>
